@@ -1,0 +1,51 @@
+/*TODO ITEM*/
+.todo-item,
+.no-todo {
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: #0c0c0c;
+  background-color: #161616;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  /* align-items: center; */
+  position: relative;
+}
+
+.date-delete-container {
+  position: absolute;
+  top: 3px;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.end-date {
+  font-size: 0.8rem;
+  /* border: 1px solid #a4a4a4;
+  padding: 4px 10px;
+  border-radius: 10px; */
+  color: #787878;
+}
+
+.delete-btn {
+  all: unset;
+  /* position: absolute;
+  top: 3px;
+  right: 15px; */
+  font-size: 1.7rem;
+  color: #d4d4d4;
+  background-color: rgb(72, 72, 72);
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.delete-btn:hover {
+  color: #fff;
+}

@@ -1,0 +1,144 @@
+.check-progress {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  margin-top: 5px;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border: 3px solid #424242;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.circle.filled {
+  border-color: transparent;
+}
+
+.circle.todo.filled,
+.circle.todo:hover {
+  background-color: var(--red-color);
+}
+
+.circle.in-progress.filled,
+.circle.in-progress:hover {
+  background-color: var(--yellow-color);
+}
+
+.circle.completed.filled,
+.circle.completed:hover {
+  background-color: var(--green-color);
+}
+
+.line {
+  flex: 1;
+  height: 3px;
+  background-color: #ccc;
+  background-color: #424242;
+  margin: 0 -1px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+
+.line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition: background-color 0.5s linear, width 0.5s linear;
+}
+
+.line.filled.in-progress::before {
+  background-color: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.line.filled.completed::before {
+  background-color: var(--green-color);
+  border-color: var(--green-color);
+}
+
+.line.filled::before {
+  width: 100%;
+  animation: fill-gradient 0.5s forwards;
+}
+
+.line:not(.filled)::before {
+  animation: empty-gradient 0.5s forwards;
+  width: 0; 
+}
+
+/* Animationer */
+@keyframes fill-gradient {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes empty-gradient {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+/*============PROGRESS LABEL==============0*/
+.progress-label-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-label-content {
+  width: 80px;
+}
+
+.progress-label {
+  margin-top: -5px;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #a2a2a2;
+  text-transform: capitalize;
+}
+
+.progress-label-content:nth-child(1) .progress-label {
+  text-align: left;
+}
+
+.progress-label-content:nth-child(3) .progress-label {
+  text-align: right;
+}

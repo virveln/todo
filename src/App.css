@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root {
+  /* --red-color: #ff2626;
+  --red-color-hover: rgba(255, 38, 38, .2);
+  --yellow-color: #ffbf00;
+  --yellow-color-hover: rgba(255, 191, 0, .2);
+  --green-color: #2b9100;
+  --green-color-hover: rgba(43, 145, 0, .2); */
+
+  --red-color: #e90064;
+  --red-color-hover: rgba(233, 0, 100, .2);
+  --yellow-color: #ffed00;
+  --yellow-color-hover: rgba(255, 237, 0, .2);
+  --green-color: #54b435;
+  --green-color-hover: rgba(84, 180, 53, .2);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0c0c0c;
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+}
+
+.tasks-container {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-list-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px 20px 20px;
+  margin-top: 220px;
+}
+
+

@@ -1,0 +1,91 @@
+.status-filter-container {
+  width: 60vw;
+  position: fixed;
+  z-index: 1000;
+  background-color: #0c0c0c;
+  box-shadow: 0 4px 8px rgba(28, 28, 28, 0.1);
+  clip-path: inset(0 0 -10px 0);
+}
+
+.status-filter-all {
+  max-width: 600px;
+  padding: 0 20px;
+  margin: auto;
+}
+
+.status-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.status-filter>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.status-circle span {
+  font-size: 24px;
+}
+
+.status-filter>div>p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.status-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-circle.todo {
+  border: 5px solid var(--red-color);
+}
+
+.status-circle.in-progress {
+  border: 5px solid var(--yellow-color);
+}
+
+.status-circle.completed {
+  border: 5px solid var(--green-color);
+}
+
+.see-all-tasks-btn {
+  justify-self: left;
+  padding-bottom: 5px;
+  cursor: pointer;
+  color: #787878;
+}
+
+.see-all-tasks-btn:hover {
+  color: #979797;
+}
+
+.status-circle.todo.active {
+  background-color: var(--red-color-hover);
+}
+
+.status-circle.in-progress.active {
+  background-color: var(--yellow-color-hover);
+}
+
+.status-circle.completed.active {
+  background-color: var(--green-color-hover);
+}
