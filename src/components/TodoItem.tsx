@@ -31,11 +31,10 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos }) => {
                 status={todo.status}
                 onStatusChange={(newStatus) => handleStatusChange(todo.id, newStatus)}
             />
-            <div className='date-delete-container'>
+            <div className='date-container'>
                 <p className='end-date'><span>End Date: </span>{todo.date.toLocaleDateString()}</p>
-                {/* <button className='delete-btn' onClick={() => onDeleteTodo(todo.id)} title='Delete Task'><TiDeleteOutline /></button> */}
             </div>
-            <button className='delete-btn' onClick={() => handleDeleteTodo(todo.id)} title='Delete Task'><FaDeleteLeft /></button>
+            <button data-testid="delete-btn" className='delete-btn' onClick={() => handleDeleteTodo(todo.id)} title='Delete Task'><FaDeleteLeft /></button>
         </div>
     );
 };
