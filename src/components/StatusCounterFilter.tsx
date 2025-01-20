@@ -6,69 +6,42 @@ interface StatusFilterProps {
     todoCount: number;
     inProgressCount: number;
     completedCount: number;
-    onFilterChange: (status: Todo['status'] | null) => void;
+    setFilter: (status: Todo['status'] | null) => void;
 }
 
-const StatusFilter: React.FC<StatusFilterProps> = ({
-    todoCount,
-    inProgressCount,
-    completedCount,
-    onFilterChange,
-}) => {
+const StatusCounterFilter: React.FC<StatusFilterProps> = ({ todoCount, inProgressCount, completedCount, setFilter }) => {
     const [activeFilter, setActiveFilter] = useState<Todo['status'] | null>(null);
+    
+    const statuses = [
+        { status: 'todo', count: todoCount, label: 'Todo' },
+        { status: 'in-progress', count: inProgressCount, label: 'In Progress' },
+        { status: 'completed', count: completedCount, label: 'Completed' },
+    ] as const;
 
     const handleFilterClick = (status: Todo['status'] | null) => {
         setActiveFilter(status);
-        onFilterChange(status);
+        setFilter(status);
     };
-
-    // const statuses = ['todo', 'in-progress', 'completed'] as Todo['status'][];
-
 
     return (
         <div className='status-filter-container'>
             <div className='status-filter-all'>
                 <div className="status-filter">
-                    {/* {statuses.map((status) => (
-                        <div>
+                    {statuses.map(({ status, count, label }) => (
+                        <div key={status}>
                             <div
-                                className={`status-circle ${status} ${activeFilter === 'todo' ? 'active' : ''}`}
-                                onClick={() => handleFilterClick('todo')}
+                                data-testid={status}
+                                className={`status-circle ${status} ${activeFilter === status ? 'active' : ''}`}
+                                onClick={() => handleFilterClick(status)}
                             >
-                                <span>{todoCount}</span>
+                                <span>{count}</span>
                             </div>
-                            <p>{status.replace('-', ' ')}</p>
+                            <p>{label.replace('-', ' ')}</p>
                         </div>
-                    ))} */}
-                    <div>
-                        <div
-                            className={`status-circle todo ${activeFilter === 'todo' ? 'active' : ''}`}
-                            onClick={() => handleFilterClick('todo')}
-                        >
-                            <span>{todoCount}</span>
-                        </div>
-                        <p>Todo</p>
-                    </div>
-                    <div>
-                        <div
-                            className={`status-circle in-progress ${activeFilter === 'in-progress' ? 'active' : ''}`}
-                            onClick={() => handleFilterClick('in-progress')}
-                        >
-                            <span>{inProgressCount}</span>
-                        </div>
-                        <p>In Progress</p>
-                    </div>
-                    <div>
-                        <div
-                            className={`status-circle completed ${activeFilter === 'completed' ? 'active' : ''}`}
-                            onClick={() => handleFilterClick('completed')}
-                        >
-                            <span>{completedCount}</span>
-                        </div>
-                        <p>Completed</p>
-                    </div>
+                    ))}                 
                 </div>
                 <p
+                    data-testid="see-all-tasks"
                     className={`see-all-tasks-btn ${activeFilter === null ? 'active' : ''}`}
                     onClick={() => handleFilterClick(null)}
                 >
@@ -79,4 +52,4 @@ const StatusFilter: React.FC<StatusFilterProps> = ({
     );
 };
 
-export default StatusFilter;
+export default StatusCounterFilter;

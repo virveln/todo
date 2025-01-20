@@ -5,60 +5,30 @@ import React, { useState } from 'react';
 import { Todo } from './components/types';
 import TodoList from './components/TodoList';
 import AddTodo from './components/AddTodo';
-import StatusFilter from './components/StatusCounterFilter';
+import StatusCounterFilter from './components/StatusCounterFilter';
 import './App.css';
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<Todo['status'] | null>(null);
 
-  const handleAddTodo = (title: string, description: string, date: Date) => {
-    const newTodo: Todo = {
-      id: Date.now(),
-      title,
-      description,
-      date,
-      status: 'todo',
-    };
-    setTodos([...todos, newTodo]);
-    console.log(newTodo);
-  };
-
-  const handleDeleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const handleStatusChange = (id: number, newStatus: Todo['status']) => {
-    setTodos(todos.map((todo) =>
-      todo.id === id ? { ...todo, status: newStatus } : todo
-    ));
-    console.log(todos);
-
-  };
-
-  const handleFilterChange = (status: Todo['status'] | null) => {
-    setFilter(status);
-    console.log(status);
-
-  };
-
   const filteredTodos = filter ? todos.filter((todo) => todo.status === filter) : todos;
-
 
   return (
     <div className='app-container'>
       <div className='outer-form-container'>
-        <AddTodo onAddTodo={handleAddTodo} />
+        <AddTodo
+          todos={todos}
+          setTodos={setTodos}
+        />
       </div>
       <div className='tasks-container'>
-        {/* <h1>Todo App</h1> */}
-        <StatusFilter
+        <StatusCounterFilter
           todoCount={todos.filter((todo) => todo.status === 'todo').length}
           inProgressCount={todos.filter((todo) => todo.status === 'in-progress').length}
           completedCount={todos.filter((todo) => todo.status === 'completed').length}
-          onFilterChange={handleFilterChange}
+          setFilter={setFilter}
         />
-        {/* <p className='see-all-tasks-btn' onClick={() => handleFilterChange(null)}>See all Tasks</p> */}
         <div className='todo-list-container'>
           {filteredTodos.length === 0 ? (
             <>
@@ -76,13 +46,14 @@ const App: React.FC = () => {
               )}
             </>) : (
             <TodoList
-              todos={filteredTodos}
-              onStatusChange={handleStatusChange}
-              onDeleteTodo={handleDeleteTodo} />
+              filteredTodos={filteredTodos}
+              todos={todos}
+              setTodos={setTodos}
+            />
           )}
         </div>
       </div>
-      
+
     </div>
   );
 };

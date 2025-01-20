@@ -20,7 +20,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Jest-type definition */
+    "types": ["jest"]
   },
-  "include": ["src"]
+  "include": ["src", "src/types.d.ts"]
 }

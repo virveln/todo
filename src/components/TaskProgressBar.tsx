@@ -17,11 +17,12 @@ const CheckProgress: React.FC<CheckProgressProps> = ({ status, onStatusChange })
                     <div key={item} className="progress-item">
                         <div className="progress-container">
                             <div
+                                data-testid={item}
                                 className={`circle ${statuses.indexOf(status) >= index ? 'filled' : ''} ${item} ${status}`}
                                 onClick={() => onStatusChange(item)}
                             ></div>
                             {index < statuses.length - 1 && (
-                                <div className={`line ${statuses.indexOf(status) > index ? 'filled' : ''}  ${status}`}></div>
+                                <div data-testid="line" className={`line ${statuses.indexOf(status) > index ? 'filled' : ''}  ${status}`}></div>
                             )}
                         </div>
                     </div>
@@ -29,14 +30,13 @@ const CheckProgress: React.FC<CheckProgressProps> = ({ status, onStatusChange })
             </div>
 
             <div className="progress-label-container">
-            {statuses.map((item) => (
-                <div key={item} className="progress-label-content">
-                    <p className="progress-label">{item.replace('-', ' ')}</p>
-                </div>
-            ))}
-        </div >
+                {statuses.map((item) => (
+                    <div key={item} className="progress-label-content">
+                        <p className="progress-label">{item.replace('-', ' ')}</p>
+                    </div>
+                ))}
+            </div >
         </>
-
     );
 };
 
